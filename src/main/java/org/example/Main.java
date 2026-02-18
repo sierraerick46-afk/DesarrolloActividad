@@ -18,15 +18,13 @@ public class Main {
 
         EstudianteController controller = new EstudianteController(service, view);
 
-        Estudiante estudiante = controller.registrarEstudiante(10L,"Carlos","18/02/26");
+        controller.registrarAsistencia(3L, "2026-02-17", EstadoEstudiante.ASISTIO);
 
-        controller.mostrarEstudiante(estudiante);
+        controller.consultarAsistencia(3L);
 
-        controller.consultarAsistencia(estudiante.getId(), estudiante);
+        controller.eliminarAsistencia(3L);
 
-        controller.cambiarAsistencia(estudiante, EstadoEstudiante.ASISTE);
-
-        controller.mostrarEstudiante(estudiante);
+        controller.consultarAsistencia(3L);
 
 
 

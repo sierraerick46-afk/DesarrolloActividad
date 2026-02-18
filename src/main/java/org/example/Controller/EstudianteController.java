@@ -1,5 +1,6 @@
 package org.example.Controller;
 
+import org.example.Model.Asistencia;
 import org.example.Model.EstadoEstudiante;
 import org.example.Model.Estudiante;
 import org.example.Service.EstudianteService;
@@ -15,32 +16,24 @@ public class EstudianteController {
         this.view = view;
     }
 
-    public Estudiante registrarEstudiante(Long id, String nombre, String fecha){
-
-        Estudiante estudiante = service.registrarEstudiante(id, nombre, fecha);
-        view.mostrarMensaje("ESTUDIANTE REGISTRADO" + estudiante.getAsistencia());
-        return estudiante;
-    }
-
-    public void cambiarAsistencia(Estudiante estudiante, EstadoEstudiante nuevaAsistencia){
-
-        service.cambiarAsistencia(estudiante, nuevaAsistencia);
-        view.mostrarMensaje("ASISTENCIA CAMBIADA" + nuevaAsistencia);
-    }
-
-    public Estudiante consultarAsistencia(Long idEstudiante, Estudiante asistenciaActual){
-        return service.consultarAsistencia(idEstudiante, asistenciaActual);
-    }
-
-    public void eliminarAsistencia(Long idEstudiante, Estudiante asistenciaActual){
-        service.eliminarAsistencia(idEstudiante, asistenciaActual);
-
-    }
-
-    public void mostrarEstudiante(Estudiante estudiante){
-        view.mostrarEstudiantes(estudiante);
+    public void registrarAsistencia(Long idEstudiante, String fecha, EstadoEstudiante estado){
+        service.registrarAsistencia(idEstudiante, fecha, estado);
+        view.mostrarMensaje("Asistencia registrada");
     }
 
 
+    public void consultarAsistencia(Long idEstudiante){
+        Asistencia asistencia = service.consultarAsistencia(idEstudiante);
 
+        if (asistencia != null) {
+            view.mostrarAsistencia(asistencia);
+        } else {
+            view.mostrarMensaje("Se ha guardado la asistencia del estudiante");
+        }
+    }
+
+    public void eliminarAsistencia(Long idEstudiante){
+        service.eliminarAsistencia(idEstudiante);
+
+    }
 }

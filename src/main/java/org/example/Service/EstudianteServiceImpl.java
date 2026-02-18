@@ -1,23 +1,25 @@
 package org.example.Service;
 
+import org.example.Model.Asistencia;
 import org.example.Model.EstadoEstudiante;
-import org.example.Model.Estudiante;
 
 public class EstudianteServiceImpl implements EstudianteService {
 
+    private Asistencia asistenciaActual;
+
     @Override
-    public Estudiante registrarEstudiante(Long id, String nombre, String fecha){
-        return new Estudiante(id, nombre, fecha);
+    public void registrarAsistencia(Long idEstudiante, String fecha, EstadoEstudiante estado){
+        if (asistenciaActual != null && asistenciaActual.getIdEstudiante().equals(idEstudiante) && asistenciaActual.getFecha().equals(fecha)) {
+
+            throw new IllegalArgumentException("Solo se puede registrar una vez");//Excepcion para detener la ejecucion en caso que sea invalida
+        }
+
+        asistenciaActual = new Asistencia(idEstudiante, fecha, estado);
     }
 
     @Override
-    public void cambiarAsistencia(Estudiante estudiante, EstadoEstudiante nuevaAsistencia){
-        estudiante.setAsistencia(nuevaAsistencia);
-    }
-
-    @Override
-    public Estudiante consultarAsistencia(Long idEstudiante, Estudiante asistenciaActual) {
-        if(asistenciaActual.getId() == idEstudiante){
+    public Asistencia consultarAsistencia(Long idEstudiante) {
+        if (asistenciaActual != null && asistenciaActual.getIdEstudiante().equals(idEstudiante)) {
 
             return asistenciaActual;
         }
@@ -26,9 +28,8 @@ public class EstudianteServiceImpl implements EstudianteService {
     }
 
     @Override
-    public void eliminarAsistencia(Long idEstudiante, Estudiante asistenciaActual){
-        if(asistenciaActual.getId() == idEstudiante){
-
+    public void eliminarAsistencia(Long idEstudiante){
+        if (asistenciaActual != null && asistenciaActual.getIdEstudiante().equals(idEstudiante)) {
             asistenciaActual = null;
         }
     }

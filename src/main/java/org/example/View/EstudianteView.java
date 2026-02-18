@@ -1,17 +1,16 @@
 package org.example.View;
 
+import org.example.Model.Asistencia;
 import org.example.Model.Estudiante;
 
 public class EstudianteView {
 
-    public void mostrarEstudiantes(Estudiante estudiante){
+    public void mostrarAsistencia(Asistencia asistencia) {
 
-        System.out.println("-----------------LISTA-----------------");
-        System.out.println("ID:  " + estudiante.getId());
-        System.out.println("Estudiante:  " + estudiante.getNombre());
-        System.out.println("Fecha:  " + estudiante.getFecha());
-        System.out.println("Asistencia:  " + estudiante.getAsistencia());
-
+        System.out.println("--------REGISTRO--------");
+        System.out.println("ID Estudiante: " + asistencia.getIdEstudiante());
+        System.out.println("Fecha: " + asistencia.getFecha());
+        System.out.println("Estado de Asistencia: " + asistencia.getEstado());
     }
 
     public void mostrarMensaje(String mensaje){
