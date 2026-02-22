@@ -4,6 +4,6 @@ public enum EstadoEstudiante {
 
     ASISTIO,
     FALLO,
-    INCAPACITADO
+    INCAPACIDAD
 
 }

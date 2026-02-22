@@ -2,7 +2,6 @@ package org.example.Controller;
 
 import org.example.Model.Asistencia;
 import org.example.Model.EstadoEstudiante;
-import org.example.Model.Estudiante;
 import org.example.Service.EstudianteService;
 import org.example.View.EstudianteView;
 
@@ -22,7 +21,7 @@ public class EstudianteController {
     }
 
 
-    public void consultarAsistencia(Long idEstudiante){
+    public Asistencia consultarAsistencia(Long idEstudiante){
         Asistencia asistencia = service.consultarAsistencia(idEstudiante);
 
         if (asistencia != null) {
@@ -30,6 +29,7 @@ public class EstudianteController {
         } else {
             view.mostrarMensaje("Se ha guardado la asistencia del estudiante");
         }
+        return asistencia;
     }
 
     public void eliminarAsistencia(Long idEstudiante){
